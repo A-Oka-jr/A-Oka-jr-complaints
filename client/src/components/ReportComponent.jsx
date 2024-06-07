@@ -96,14 +96,14 @@ const ReportComponent = ({ complaints }) => {
         <div className="grid grid-cols-4 gap-4">
           <input
             type="text"
-            placeholder="User ID"
+            placeholder="User Name"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             className="border p-2 rounded"
           />
           <input
             type="text"
-            placeholder="Client ID"
+            placeholder="Client Name"
             value={clientName}
             onChange={(e) => setClientName(e.target.value)}
             className="border p-2 rounded"
