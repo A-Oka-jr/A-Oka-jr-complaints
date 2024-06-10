@@ -2,7 +2,6 @@ import { useState } from "react";
 import UsersContent from "../components/UsersContent";
 import ClientsContent from "../components/ClientsContent";
 import ComplantsContent from "../components/ComplantsContent";
-import FeedbackContent from "../components/FeedbackContent";
 import ReportsContent from "../components/ReportsContent";
 import HomeContent from "../components/HomeContent";
 import { useDispatch } from "react-redux";
@@ -29,8 +28,6 @@ function Dashboard() {
         return <ClientsContent />;
       case "Complants":
         return <ComplantsContent />;
-      case "Feedback":
-        return <FeedbackContent />;
       case "Reports":
         return <ReportsContent />;
       default:
@@ -94,14 +91,6 @@ function Dashboard() {
             </li>
             <li className="mb-4">
               <button
-                onClick={() => setCurrentSection("Feedback")}
-                className="block py-2 px-4 rounded hover:bg-gray-700 w-full text-left"
-              >
-                Feedback
-              </button>
-            </li>
-            <li className="mb-4">
-              <button
                 onClick={() => setCurrentSection("Reports")}
                 className="block py-2 px-4 rounded hover:bg-gray-700 w-full text-left"
               >
@@ -126,11 +115,6 @@ function Dashboard() {
         <header className="bg-white shadow p-4 flex justify-between">
           <div>
             <h1 className="text-xl font-semibold">Dashboard</h1>
-          </div>
-          <div>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-              Button
-            </button>
           </div>
         </header>
 

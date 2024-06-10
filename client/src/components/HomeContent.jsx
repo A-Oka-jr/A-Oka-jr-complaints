@@ -96,7 +96,7 @@ const HomeContent = () => {
 
       setComplaints((prevComplaints) =>
         prevComplaints.map((complaint) =>
-          complaint._id === editingComplaint._id ? editingComplaint : complaint
+          complaint._id === data.complaint._id ? data.complaint : complaint
         )
       );
       handleModalClose();
@@ -125,9 +125,12 @@ const HomeContent = () => {
     (currentPage - 1) * complaintsPerPage,
     currentPage * complaintsPerPage
   );
-
   const totalPages = Math.ceil(complaints.length / complaintsPerPage);
+  console.log(complaints);
 
+  const countStatus = (status) => {
+    return complaints.filter((complaint) => complaint.status === status).length;
+  };
   return (
     <div className="container mx-auto p-4">
       <ToastContainer />
@@ -138,12 +141,48 @@ const HomeContent = () => {
           Something went wrong
         </p>
       )}
-      <div className="text-right">
-        <h2 className="text-2xl font-semibold">
-          Over All <span className="text-red-700"> {complaints.length} </span>{" "}
-          Complaints
-        </h2>
+      <div className="flex justify-between mb-4">
+        <div className="text-right">
+          <h2 className="text-md font-semibold">
+            Opend
+            <span className="font-semibold text-xl text-red-700">
+              {` ` + countStatus(1) + ` `}
+            </span>
+            Complaints
+          </h2>
+        </div>
+
+        <div className="text-right">
+          <h2 className="text-md font-semibold">
+            On Going
+            <span className="font-semibold text-xl text-green-700">
+              {` ` + countStatus(2) + ` `}
+            </span>
+            Complaints
+          </h2>
+        </div>
+
+        <div className="text-right">
+          <h2 className="text-md font-semibold">
+            Closed
+            <span className="font-semibold text-xl text-blue-700">
+              {` ` + countStatus(3) + ` `}
+            </span>
+            Complaints
+          </h2>
+        </div>
+
+        <div className="text-right">
+          <h2 className="text-md font-semibold">
+            Over All
+            <span className="font-semibold text-xl text-gray-700">
+              {` ` + complaints.length + ` `}
+            </span>
+            Complaints
+          </h2>
+        </div>
       </div>
+
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
           <thead>
@@ -210,8 +249,10 @@ const HomeContent = () => {
                     {complaint.status === 1
                       ? "Opened"
                       : complaint.status === 2
+                      ? "On Going"
+                      : complaint.status === 3
                       ? "Closed"
-                      : "On Going"}
+                      : ""}
                   </span>
                 </td>
                 <td className="py-4 px-6 text-sm font-medium text-gray-900">
@@ -318,8 +359,8 @@ const HomeContent = () => {
                   onChange={handleInputChange}
                 >
                   <option value={1}>Opened</option>
-                  <option value={2}>Closed</option>
-                  <option value={3}>On Going</option>
+                  <option value={2}>On Going</option>
+                  <option value={3}>Closed</option>
                 </select>
               </div>
               <div className="flex justify-end">
