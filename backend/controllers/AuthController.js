@@ -10,16 +10,18 @@ class AuthController {
     }
   }
 
-  async login(req, res) {
+  async login(req, res, next) {
+    const { email, password } = req.body;
+
     try {
-      const { email, password } = req.body;
       const { rest, token } = await authService.login(email, password);
       res
         .cookie("access_token", token, { httpOnly: true })
         .status(200)
         .json(rest);
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      console.log(error.message);
+      next(error);
     }
   }
 

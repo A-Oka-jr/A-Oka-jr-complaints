@@ -20,12 +20,12 @@ class AuthService {
     try {
       const user = await userRepository.findUserByEmail(email);
       if (!user) {
-        throw errorHandler(404, "user not found");
+        throw errorHandler(404, "User Not Found!");
       }
 
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = bcrypt.compareSync(password, user.password);
       if (!isMatch) {
-        throw errorHandler(404, "wrong email or password");
+        throw errorHandler(401, "Wrong Email Or Password");
       }
 
       const payload = { id: user._id };

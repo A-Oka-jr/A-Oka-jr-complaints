@@ -126,7 +126,6 @@ const HomeContent = () => {
     currentPage * complaintsPerPage
   );
   const totalPages = Math.ceil(complaints.length / complaintsPerPage);
-  console.log(complaints);
 
   const countStatus = (status) => {
     return complaints.filter((complaint) => complaint.status === status).length;

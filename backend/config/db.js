@@ -4,9 +4,7 @@ import "dotenv/config";
 const dbConnect = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000, // Adjust this timeout as needed
+      serverSelectionTimeoutMS: 5000,
     });
     console.log("Connected to MongoDB!");
   } catch (error) {

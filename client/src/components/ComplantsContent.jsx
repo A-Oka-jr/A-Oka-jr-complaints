@@ -64,7 +64,6 @@ const ComplantsContent = () => {
   }, []);
 
   const handleChange = (e) => {
-    console.log(e.target.name);
     const { name, value } = e.target;
     setFormData({
       ...formData,

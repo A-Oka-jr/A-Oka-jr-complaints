@@ -113,8 +113,6 @@ const UsersContent = () => {
     fetchUsers();
   }, []);
 
-  console.log(typeof users);
-
   const paginatedUsers = users.slice(
     (currentPage - 1) * usersPerPage,
     currentPage * usersPerPage

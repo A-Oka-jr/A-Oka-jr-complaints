@@ -121,7 +121,6 @@ const ClientsContent = () => {
     };
     fetchClients();
   }, []);
-  console.log(clients);
 
   const paginatedClients = clients.slice(
     (currentPage - 1) * clientsPerPage,

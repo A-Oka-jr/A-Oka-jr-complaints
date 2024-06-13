@@ -27,21 +27,19 @@ const Signin = () => {
       });
 
       const data = response.data;
-      console.log(data);
 
       if (data.success === false) {
         dispatch(signinFailuar(data.message));
-        console.log(data.message);
-        console.log(data.message);
         return;
       }
 
       dispatch(signinSuccess(data));
       navigate("/dashboard");
     } catch (error) {
-      dispatch(signinFailuar(error.response.data.message));
+      dispatch(signinFailuar("Wrong Email Or Password"));
     }
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-sm">
@@ -60,6 +58,7 @@ const Signin = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter your email"
               onChange={handleChange}
+              required
             />
           </div>
           <div className="mb-6">
@@ -75,19 +74,20 @@ const Signin = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter your password"
               onChange={handleChange}
+              required
             />
           </div>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
           <div className="flex items-center justify-between">
             <button
               disabled={loading}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-              {loading ? "loading" : "sigin In"}
+              {loading ? "Loading..." : "Sign In"}
             </button>
           </div>
         </form>
       </div>
-      {error && <p className="text-red-500 mt-5">{error}</p>}
     </div>
   );
 };
