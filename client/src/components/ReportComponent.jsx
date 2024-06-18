@@ -127,8 +127,8 @@ const ReportComponent = ({ complaints }) => {
           >
             <option value="">All Status</option>
             <option value="1">Opened</option>
-            <option value="2">Closed</option>
-            <option value="3">On Going</option>
+            <option value="2">On Going</option>
+            <option value="3">Closed</option>
           </select>
         </div>
       </div>
@@ -201,8 +201,8 @@ const ReportComponent = ({ complaints }) => {
                       {complaint.status === 1
                         ? "Opened"
                         : complaint.status === 2
-                        ? "Closed"
-                        : "On Going"}
+                        ? "On Going"
+                        : "Closed"}
                     </span>
                   </td>
                 </tr>
